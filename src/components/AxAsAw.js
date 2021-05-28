@@ -2,14 +2,18 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
  
 function AxAsAw() {
-  const [data, setData] = useState({ hits: [] });
+    const [data, setData] = useState({ hits: [] });
  
-  useEffect(async () => {
-    const result = await axios(
-      'https://hn.algolia.com/api/v1/search?query=redux',
-    );
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios(
+        'https://hn.algolia.com/api/v1/search?query=redux',
+      );
  
-    setData(result.data);
+      setData(result.data);
+    };
+ 
+    fetchData();
   }, []);
  
   return (
@@ -24,3 +28,6 @@ function AxAsAw() {
 }
  
 export default AxAsAw;
+
+// https://www.robinwieruch.de/react-hooks-fetch-data
+
